@@ -22,21 +22,27 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
-    double x, y;
+    double x, y,z;
     MapView mv;
 
     public void onClick(View view) {
         EditText et = (EditText) findViewById(R.id.et1);
         EditText et2 = (EditText) findViewById(R.id.et2);
+        EditText et3 = (EditText) findViewById(R.id.et3);
+
         try {
             x = Double.parseDouble(et.getText().toString());
             y = Double.parseDouble(et2.getText().toString());
+            z = Double.parseDouble(et3.getText().toString());
+
+            mv.getController().setZoom(z);
+
             mv.getController().setCenter(new GeoPoint(x, y));
 
         }
         catch (NumberFormatException nfe){
 
-            popupMessage("Please enter data in both text fields");
+            popupMessage("Please enter data in all text fields");
         }
 
         }
