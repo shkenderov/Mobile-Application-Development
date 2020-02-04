@@ -3,5 +3,11 @@
 
     <string name="convertBtn">Convert!</string>
 
+    <string name="regularview">Regular View</string>
+
+    <string name="hikebikemapview">Bike map view</string>
+
+    <string name="selectmap">Select map</string>
+    <string name="choosemap">Choose map</string>
 
 </resources>

@@ -1,4 +1,5 @@
 package com.example.myapplication;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -15,15 +16,57 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.app.AlertDialog;
-
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
     double x, y,z;
     MapView mv;
+    protected void onActivityResult(int requestCode,int resultCode,Intent intent)
+    {
+
+        if(requestCode==0)
+        {
+
+            if (resultCode==RESULT_OK)
+            {
+                Bundle extras=intent.getExtras();
+                boolean hikebikemap = extras.getBoolean("com.example.hikebikemap");
+                if(hikebikemap==true)
+                {
+                    mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
+                }
+                else
+                {
+                    mv.setTileSource(TileSourceFactory.MAPNIK);
+                }
+            }
+        }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId() == R.id.choosemap)
+        {
+            Intent intent = new Intent(this,MapChooseActivity.class);
+            startActivityForResult(intent,0);
+            return true;
+        }
+        return false;
+    }
+
 
     public void onClick(View view) {
         EditText et = (EditText) findViewById(R.id.et1);
