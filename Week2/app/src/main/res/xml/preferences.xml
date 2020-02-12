@@ -1,6 +1,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:key="lat" android:defaultValue="50.9" android:title="Latitude" android:summary="Latitude to show the map at initially." />
-    <EditTextPreference android:key="lon" android:defaultValue="-1.4" android:title="Longitude" android:summary="Longitude to show the map at initially." />
+    <EditTextPreference android:key="lat" android:defaultValue="42.6977" android:title="Latitude" android:summary="Latitude to show the map at initially." />
+    <EditTextPreference android:key="lon" android:defaultValue="23.3219" android:title="Longitude" android:summary="Longitude to show the map at initially." />
     <EditTextPreference android:key="zoom" android:defaultValue="16" android:title="Zoom" android:summary="Zoom level" />
 
 </PreferenceScreen>

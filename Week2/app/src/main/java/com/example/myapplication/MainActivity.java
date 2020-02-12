@@ -65,6 +65,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             startActivityForResult(intent,0);
             return true;
         }
+        if(item.getItemId()==R.id.preferences){
+            Intent intent = new Intent(this,MyPrefsActivity.class);
+            startActivityForResult(intent,0);
+            return true;
+        }
         return false;
     }
 
@@ -98,10 +103,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate (savedInstanceState);
-        if (savedInstanceState != null)
-        {
-            isRecording = savedInstanceState.getBoolean ("isRecording");
-        }
+
+
 
 
         // This line sets the user agent, a requirement to download OSM maps
@@ -114,8 +117,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         mv = findViewById(R.id.map1);
 
         mv.setMultiTouchControls(true);
-        mv.getController().setZoom(16.0);
-        mv.getController().setCenter(new GeoPoint(51.05, -0.72));
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        double lat = Double.parseDouble ( prefs.getString("lat", "50.9") );
+        double lon = Double.parseDouble ( prefs.getString("lon", "-1.4") );
+        double zoom = Double.parseDouble ( prefs.getString("zoom", "16") );
+
+        //boolean autodownload = prefs.getBoolean("autodownload", true);
+        mv.getController().setCenter(new GeoPoint(lat, lon));
+        mv.getController().setZoom(zoom);
     }
     public void onResume()
     {
@@ -131,14 +140,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
 
 
     }
-    public void onDestroy()
-    {
-        super.onDestroy();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean ("isRecording", isRecording);
-        editor.commit();
-    }
+
 
     private void popupMessage(String message) {
         new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage(message).show();

@@ -9,5 +9,6 @@
 
     <string name="selectmap">Select map</string>
     <string name="choosemap">Choose map</string>
-
+     <string name="preferences">Preferences</string>
+    <string name="savebtn">Save Preferences</string>
 </resources>
