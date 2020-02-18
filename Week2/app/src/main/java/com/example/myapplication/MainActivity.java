@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             startActivityForResult(intent,0);
             return true;
         }
+        if(item.getItemId()==R.id.choosemaplist){
+            Intent intent = new Intent(this,MyPrefsActivity.class);
+            startActivityForResult(intent,0);
+            return true;
+        }
         return false;
     }
 
@@ -113,7 +118,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         setContentView(R.layout.activity_main);
 
         Button btn = (Button) findViewById(R.id.btn1);
-        btn.setOnClickListener(this);
+        try{
+            btn.setOnClickListener(this);
+
+        }
+        catch(java.lang.NullPointerException e){
+
+        }
         mv = findViewById(R.id.map1);
 
         mv.setMultiTouchControls(true);
