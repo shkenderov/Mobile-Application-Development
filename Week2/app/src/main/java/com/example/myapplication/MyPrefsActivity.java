@@ -13,7 +13,7 @@ public class MyPrefsActivity extends PreferenceActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
         Button savebtn = (Button)findViewById(R.id.savebtn);
-        savebtn.setOnClickListener(this);
+//        savebtn.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
